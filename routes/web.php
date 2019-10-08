@@ -18,10 +18,24 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function () {
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], function () {
+    Route::get('/', function () {
+        return view('admin.index');
+    });
+
     Route::resource('penerbit', 'PenerbitController');
     Route::resource('buku', 'BukuController');
     Route::resource('detail', 'DetailController');
     Route::resource('petugas', 'PetugasController');
+    Route::get('/petugas/cari', 'PetugasController@cari');
     Route::resource('peminjaman', 'PeminjamanController');
+    Route::resource('kategori', 'KategoriController');
+    Route::resource('peminjam', 'PeminjamController');
+
+    // Route::resource('user', 'UserController');
 });
+Route::resource('detail', 'DetailController');
+Route::resource('buku', 'BukuController');
+Route::resource('kartu', 'KartuController');
+Route::resource('peminjam', 'PeminjamController');

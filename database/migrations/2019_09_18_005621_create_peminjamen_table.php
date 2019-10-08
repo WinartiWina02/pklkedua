@@ -15,12 +15,12 @@ class CreatePeminjamenTable extends Migration
     {
         Schema::create('peminjamen', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_petugas');
-            $table->foreign('id_petugas')->references('id')->on('petugas')->onDelete('cascade');
-            $table->unsignedBigInteger('id_peminjam');
-            $table->foreign('id_peminjam')->references('id')->on('peminjams')->onDelete('cascade');
-            $table->date('peminjam_tgl');
-            $table->date('peminjam_tgl_hrs_kembali');
+            $table->unsignedbigInteger('petugas_id');
+            $table->unsignedbigInteger('peminjams_id');
+            $table->date('pjm_tgl');
+            $table->date('pjm_tglkembali');
+            $table->foreign('petugas_id')->references('id')->on('petugas')->onDelete('cascade');
+            $table->foreign('peminjams_id')->references('id')->on('peminjams')->onDelete('cascade');
             $table->timestamps();
         });
     }

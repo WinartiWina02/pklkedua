@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
 @endsection
@@ -25,7 +25,7 @@
                 <div class="card-body">
     <div class="form-group">
         <label for="">Petugas</label>
-        <input class="form-control" value="{{ $petugas->petugas_nama }}" type="text" name="petugas_nama" disabled>
+        <input class="form-control" value="{{ $petugas->petugas_nama }}" type="text" name="petugas_nama" readonly>
     </div>
     <div class="form-group">
         <a href="{{ url('/admin/petugas') }}" class="btn btn-outline-info">Kembali</a>

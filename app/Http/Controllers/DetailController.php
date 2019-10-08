@@ -16,7 +16,7 @@ class DetailController extends Controller
      */
     public function index()
     {
-        $detail = Detail::orderBy('created_at', 'desc')->get();
+        $detail = Detail::all();
         return view('adminbackend.detail.index', compact('detail'));
     }
 
@@ -43,7 +43,7 @@ class DetailController extends Controller
     public function store(Request $request)
     {
         $detail = new detail();
-        $detail->id_peminjaman = $request->id_pjm;
+        $detail->peminjamen_id = $request->name;
         $detail->id_buku = $request->id_bk;
         $detail->detail_tgl_kembali = $request->kembali;
         $detail->detail_denda = $request->detail;

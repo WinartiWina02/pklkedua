@@ -18,7 +18,7 @@ class PeminjamanController extends Controller
      */
     public function index()
     {
-        $peminjaman = Peminjaman::orderBy('created_at', 'desc')->get();
+        $peminjaman = Peminjaman::all();
         return view('adminbackend.peminjaman.index', compact('peminjaman'));
     }
 
@@ -29,9 +29,9 @@ class PeminjamanController extends Controller
      */
     public function create()
     {
-        $peminjaman = Peminjaman::all();
         $petugas = Petugas::all();
         $peminjam = Peminjam::all();
+        $peminjaman = Peminjaman::all();
         return view('adminbackend.peminjaman.create', compact('peminjaman', 'petugas', 'peminjam'));
         // compact peminjaman ini ngambilnya di $peminjaman
     }
@@ -45,24 +45,27 @@ class PeminjamanController extends Controller
     public function store(Request $request)
     {
         $peminjaman = new Peminjaman();
-        $peminjaman->id_peminjam = $request->pnjm_kd;
-        $peminjaman->id_petugas = $request->ptg_kd;
-        $peminjaman->peminjam_tgl = $request->tgl_pjm;
-        $peminjaman->peminjam_tgl_hrs_kembali = $request->kembali;
-        $peminjaman->save();
+        $peminjaman->petugas_id = $request->petugas_nama;
+        $peminjaman->peminjams_id = $request->peminjam_nama;
+        $peminjaman->pjm_tgl = $request->pjm_tgl;
+        $peminjaman->pjm_tglkembali = $request->pjm_tglkembali;
 
-        return redirect()->route('peminjaman.index');
+        $peminjaman->save();
+        return redirect()->route('peminjaman.index')->with('success', 'berhasil ditambah');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  int  $id\
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
+        $petugas = Petugas::all();
+        $peminjam = Peminjam::all();
+        $peminjaman = Peminjaman::all();
+        return view('adminbackend.peminjaman.create', compact('petugas', 'peminjam', 'peminjaman'));
     }
 
     /**
@@ -72,7 +75,12 @@ class PeminjamanController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    { }
+    {
+        $petugas = Petugas::all();
+        $peminjaman = Peminjaman::findOrFail($id);
+        $peminjam = Peminjam::all();
+        return view('adminbackend.peminjaman.edit', compact('petugas', 'peminjaman', 'peminjam'));
+    }
 
     /**
      * Update the specified resource in storage.
@@ -83,7 +91,13 @@ class PeminjamanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $peminjaman = Peminjaman::findOrFail($id);
+        $peminjaman->petugas_id = $request->petugas_nama;
+        $peminjaman->peminjams_id = $request->peminjam_nama;
+        $peminjaman->pjm_tgl = $request->pjm_tgl;
+        $peminjaman->pjm_tglkembali = $request->pjm_tglkembali;
+        $peminjaman->save();
+        return redirect()->route('peminjaman.index');
     }
 
     /**

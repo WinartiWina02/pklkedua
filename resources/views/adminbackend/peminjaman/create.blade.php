@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
 @endsection
@@ -17,53 +17,45 @@
 @endsection
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
+ <div class="container">
+   <div class="row justify-content-center">
+     <div class="col-md-8">
             <div class="card">
                 <div class="card-header">Membuat Data Peminjaman</div>
                 <div class="card-body">
                     <form action="{{ route('peminjaman.store') }}" method="post" enctype="multipart/form-data">
                         {{ csrf_field() }}
-
-      </div>
-    <div class="form-group">
-        <label for="">Id Petugas</label>
-        {{-- ptg_kd ngambilnya dari store --}}
-        <select name="id_petugas" class="form-control">
-    @foreach($petugas as $data)
-        <option value="{{ $data->id }}">
-            {{-- id_petugas daridatabase petugas --}}
-            {{ $data->id}}
-        </option>
-    @endforeach
-        </select>
-        </div>
-
-
-    <div class="form-group">
-        <label for="">Id Peminjam</label>
-        <input class="form-control" type="text" name="id_peminjam">
-    </div>
-
-    <div class="form-group">
-        <label for="">Tanggal Peminjaman</label>
-        <input class="form-control" type="date" name="peminjam_tgl">
-    </div>
-
-    <div class="form-group">
-        <label for="">Harus Kembali</label>
-        <input class="form-control" type="date" name="peminjam_tgl_hrs_kembali">
-    </div>
-
-    <div class="form-group">
-        <button type="submit" class="btn btn-outline-info">
-        Simpan Data
-        </button>
-    </div>
-    <div class="form-group">
-        <a href="{{ url('/admin/peminjaman') }}" class="btn btn-outline-info">Kembali</a>
-    </div>
+                    <div class="form-group">
+                        <label for="">Nama Petugas</label>
+                        <select name="petugas_nama" class="form-control">
+                            @foreach($petugas as $data)
+                        <option value="{{ $data->id}}">
+                            {{ $data->petugas_nama}}
+                        </option>
+                        @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nama Peminjam</label>
+                        <select name="peminjam_nama" class="form-control">
+                            @foreach($peminjam as $data)
+                        <option value="{{ $data->id}}">
+                            {{ $data->peminjam_nama}}
+                        </option>
+                        @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Tanggal Pinjaman</label>
+                        <input class="form-control" type="date" name="pjm_tgl">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Tanggal Pengembalian</label>
+                        <input class="form-control" type="date" name="pjm_tglkembali">
+                    </div>
+                <button type="submit" name="Simpan" class="btn btn-md btn-info">Simpan</button>
+                <a name="" id="" class="btn btn-md btn-warning" href="{{route('peminjaman.index')}}" role="button">kembali</a>
+     </div>
         </form>
             </div>
                 </div>

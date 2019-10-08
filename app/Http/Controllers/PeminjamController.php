@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Peminjam;
+use File;
+use Session;
+use auth;
 
 class PeminjamController extends Controller
 {
@@ -13,7 +17,8 @@ class PeminjamController extends Controller
      */
     public function index()
     {
-        //
+        $peminjam = Peminjam::orderBy('created_at', 'desc')->get();
+        return view('adminbackend.peminjam.index', compact('peminjam'));
     }
 
     /**
@@ -23,7 +28,8 @@ class PeminjamController extends Controller
      */
     public function create()
     {
-        //
+        $peminjam = Peminjam::all();
+        return view('adminbackend.peminjam.create', compact('peminjam'));
     }
 
     /**
@@ -34,7 +40,25 @@ class PeminjamController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $peminjam = new peminjam();
+        $peminjam->peminjam_nama = $request->nm_pm;
+        $peminjam->alamat = $request->al_pm;
+        $peminjam->peminjam_telp = $request->nomor;
+
+        if ($request->hasFile('foto')) {
+            $file = $request->file('foto');
+            $Path = public_path() . '/assets/img/peminjam/';
+            $filename = '-'
+                . $file->getClientOriginalName();
+            $upload = $file->move(
+                $Path,
+                $filename
+            );
+            $peminjam->foto = $filename;
+        }
+        $peminjam->save();
+
+        return redirect()->route('peminjam.index');
     }
 
     /**
@@ -45,7 +69,8 @@ class PeminjamController extends Controller
      */
     public function show($id)
     {
-        //
+        $peminjam = Peminjam::findOrFail($id);
+        return view('adminbackend.peminjam.show', compact('peminjam'));
     }
 
     /**
@@ -56,7 +81,8 @@ class PeminjamController extends Controller
      */
     public function edit($id)
     {
-        //
+        $peminjam = Peminjam::findOrFail($id);
+        return view('adminbackend.peminjam.edit', compact('peminjam'));
     }
 
     /**
@@ -68,8 +94,27 @@ class PeminjamController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $peminjam = Peminjam::findOrFail($id);
+        $peminjam->peminjam_nama = $request->peminjam_nm;
+        $peminjam->alamat = $request->peminjam_al;
+        $peminjam->peminjam_telp = $request->peminjam_tp;
+
+        if ($request->hasFile('foto')) {
+            $file  = $request->file('foto');
+            $Path = public_path() . '/assets/img/peminjam/';
+            $filename = '-'
+                . $file->getClientOriginalName();
+            $upload = $file->move(
+                $Path,
+                $filename
+            );
+            $peminjam->foto = $filename;
+        }
+        $peminjam->save();
+        return redirect()->route('peminjam.index');
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -79,6 +124,7 @@ class PeminjamController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $peminjam = Peminjam::findOrfail($id)->delete();
+        return redirect()->route('peminjam.index');
     }
 }

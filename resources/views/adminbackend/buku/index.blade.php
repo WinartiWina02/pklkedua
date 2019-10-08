@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
 
 <div class="container">
@@ -13,8 +13,8 @@
                         <table class="table">
                             <tr>
                                 <th>No</th>
-                                <th>Kode Kategori</th>
-                                <th>Kode Penerbit</th>
+                                <th>Nama Kategori</th>
+                                <th>Nama Penerbit</th>
                                 <th>Judul Buku</th>
                                 <th>Jumlah Halaman</th>
                                 <th>Deskripsi</th>
@@ -26,9 +26,10 @@
                 @foreach($buku as $data)
                 <tr>
                     <td>{{ $no++ }}</td>
-                    <td>{{ $data->id_kategori }}</td>
-                    <td>{{ $data->id_penerbit }}</td>
+                    <td>{{ $data->kategoris->kategori_nama }}</td>
+                    <td>{{ $data->penerbits->penerbit_nama }}</td>
                     <td>{{ $data->buku_judul }}</td>
+                    <td>{{ $data->buku_jumhal}}</td>
                     <td>{{ $data->buku_deskripsi }}</td>
                     <td>{{ $data->buku_pengarang }}</td>
                    <td>{{ $data->buku_tahun_terbit }}</td>

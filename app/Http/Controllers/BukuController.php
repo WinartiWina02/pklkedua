@@ -16,7 +16,7 @@ class BukuController extends Controller
      */
     public function index()
     {
-        $buku = Buku::orderBy('created_at', 'desc')->get();
+        $buku = Buku::all();
         return view('adminbackend.buku.index', compact('buku'));
     }
 
@@ -41,20 +41,16 @@ class BukuController extends Controller
      */
     public function store(Request $request)
     {
-        $buku = new buku();
-        $buku->kode_buku = $request->kd_bk;
-        $buku->kategori_kode = $request->kd_kg;
-        $buku->penerbit_kode = $request->kd_pb;
-        $buku->buku_judul = $request->judul;
-        $buku->buku_jumhal = $request->jumlah;
+        $buku = new Buku();
+        $buku->id_kategori = $request->kt_nama;
+        $buku->id_penerbit = $request->pb_nama;
+        $buku->buku_judul = $request->buku_jdl;
+        $buku->buku_jumhal = $request->jl_hl;
         $buku->buku_deskripsi = $request->deskripsi;
-        $buku->buku_pengarang = $request->pengarang;
-        $buku->buku_tahun_terbit = $request->terbit;
-
-
+        $buku->buku_pengarang = $request->pengarangyah;
+        $buku->buku_tahun_terbit = $request->tahun;
 
         $buku->save();
-
         return redirect()->route('buku.index');
     }
 
@@ -77,7 +73,10 @@ class BukuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kategori = Kategori::all();
+        $penerbit = Penerbit::all();
+        $buku = Buku::findOrFail($id);
+        return view('adminbackend.buku.edit', compact('kategori', 'penerbit', 'buku'));
     }
 
     /**
@@ -89,7 +88,17 @@ class BukuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $buku = Buku::findOrFail($id);
+        $buku->id_kategori = $request->kt_nama;
+        $buku->id_penerbit = $request->pb_nama;
+        $buku->buku_judul = $request->buku_jdl;
+        $buku->buku_jumhal = $request->jl_hl;
+        $buku->buku_deskripsi = $request->deskripsi;
+        $buku->buku_pengarang = $request->pengarangyah;
+        $buku->buku_tahun_terbit = $request->tahun;
+
+        $buku->save();
+        return redirect()->route('buku.index');
     }
 
     /**
@@ -100,6 +109,7 @@ class BukuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $buku = Buku::findOrfail($id)->delete();
+        return redirect()->route('buku.index');
     }
 }

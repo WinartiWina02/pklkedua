@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('content')
 
 <div class="container">
@@ -14,7 +14,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Id Peminjam</th>
-                                <th> Id   Buku</th>
+                                <th> Nama Buku</th>
                                 <th>Tanggal Kembali</th>
                                 <th>Denda</th>
                                 <th>Kembali</th>
@@ -24,8 +24,8 @@
                 <tr>
                     {{-- <td>{{ $loop->iteration }}</td> --}}
                     <td>{{ $no++ }}</td>
-                    <td>{{ $data->id_peminjaman }}</td>
-                    <td>{{ $data->id_buku }}</td>
+                    <td>{{ $data->peminjamen->peminjamans_id}}</td>
+                    <td>{{ $data->bukus->buku_judul}}</td>
                      <td>{{ $data->detail_tgl_kembali }}</td>
                     <td>{{ $data->detail_denda }}</td>
                     <td>{{ $data->detail_status_kembali }}</td>

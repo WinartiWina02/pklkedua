@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
 @endsection
@@ -23,17 +23,29 @@
             <div class="card">
                 <div class="card-header">Membuat Data Detail</div>
                 <div class="card-body">
-                    <form action="{{ route('penerbit.store') }}" method="post">
+                    <form action="{{ route('detail.store') }}" method="post">
                         {{ csrf_field() }}
 
-        <div class="form-group">
+    <div class="form-group">
         <label for="">Id Peminjaman</label>
-        <input class="form-control" type="text" name="pnjm_kd">
+        <select name="peminjamans_id" class="form-control">
+            @foreach($peminjaman as $data)
+        <option value="{{ $data->id}}">
+            {{ $data->id}}
+        </option>
+        @endforeach
+        </select>
     </div>
 
     <div class="form-group">
-        <label for="">Id Buku</label>
-        <input class="form-control" type="text" name="kode_bk">
+        <label for="">Nama Buku</label>
+        <select name="buku_judul" class="form-control">
+            @foreach($buku as $data)
+        <option value="{{ $data->id}}">
+            {{ $data->buku_judul}}
+        </option>
+        @endforeach
+        </select>
     </div>
 
     <div class="form-group">

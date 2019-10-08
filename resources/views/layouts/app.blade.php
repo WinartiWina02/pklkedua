@@ -53,6 +53,12 @@
                               <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/admin/buku') }}">Buku</a>
                               </li>
+                                <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/admin/kategori') }}">Kategori</a>
+                              </li>
+                                 <li class="nav-item">
+                                <a class="nav-link" href="{{ url('/admin/peminjam') }}">Peminjam</a>
+                              </li>
                          @endrole
                             @endguest
 

@@ -6,24 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Peminjaman extends Model
 {
-    protected $fillable = ['peminjam_tgl'];
+    protected $fillable = ['petugas_id', 'peminjams_id', 'peminjam_tgl', 'peminjam_tgl_harus_kembali'];
     public $timestamps = true;
 
-    public function peminjaman()
+    public function petugas()
     {
-        return $this->belongsTo('App\Peminjam', 'id_kategori');
+        return $this->belongsTo('App\Petugas', 'petugas_id');
     }
 
-    public function user()
+    public function peminjams()
     {
-        return $this->belongsTo('App\User', 'id_user');
-    }
-    // public function tag()
-    // {
-    //     return $this->belongsToMany('App\Tag', 'artikel_tag', 'id_artikel', 'id_tag');
-    // }
-    public function getRouteKeyName()
-    {
-        return 'id_';
+        return $this->belongsTo('App\Peminjam', 'peminjams_id');
     }
 }

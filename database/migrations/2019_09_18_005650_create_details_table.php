@@ -15,12 +15,12 @@ class CreateDetailsTable extends Migration
     {
         Schema::create('details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('id_peminjaman');
-            $table->foreign('id_peminjaman')->references('id')->on('peminjamen')->onDelete('cascade');
-            $table->unsignedBigInteger('id_buku');
+            $table->unsignedbigInteger('peminjamen_id');
+            $table->foreign('peminjamen_id')->references('id')->on('peminjamen')->onDelete('cascade');
+            $table->unsignedbigInteger('id_buku');
             $table->foreign('id_buku')->references('id')->on('bukus')->onDelete('cascade');
             $table->date('detail_tgl_kembali');
-            $table->unsignedBigInteger('detail_denda');
+            $table->unsignedbigInteger('detail_denda');
             $table->string('detail_status_kembali');
             $table->timestamps();
         });
