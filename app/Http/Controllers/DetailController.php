@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Detail;
 use App\Buku;
-use App\Peminjaman;
+use App\Peminjam;
 
 class DetailController extends Controller
 {
@@ -29,8 +29,8 @@ class DetailController extends Controller
     {
         $detail = Detail::all();
         $buku = Buku::all();
-        $peminjaman = Peminjaman::all();
-        return view('adminbackend.detail.create', compact('detail', 'buku', 'peminjaman'));
+        $peminjam = Peminjam::all();
+        return view('adminbackend.detail.create', compact('detail', 'buku', 'peminjam'));
         // compact peminjaman ini ngambilnya di $peminjaman
     }
 
@@ -43,8 +43,8 @@ class DetailController extends Controller
     public function store(Request $request)
     {
         $detail = new detail();
-        $detail->peminjamen_id = $request->name;
-        $detail->id_buku = $request->id_bk;
+        $detail->peminjams_id = $request->peminjam_nama;
+        $detail->id_buku = $request->buku_judul;
         $detail->detail_tgl_kembali = $request->kembali;
         $detail->detail_denda = $request->detail;
         $detail->detail_status_kembali = $request->status;

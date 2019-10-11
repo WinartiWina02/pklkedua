@@ -27,11 +27,11 @@
                         {{ csrf_field() }}
 
     <div class="form-group">
-        <label for="">Id Peminjaman</label>
-        <select name="peminjamans_id" class="form-control">
-            @foreach($peminjaman as $data)
+        <label for="">Nama Peminjam</label>
+        <select name="peminjam_nama" class="form-control">
+            @foreach($peminjam as $data)
         <option value="{{ $data->id}}">
-            {{ $data->id}}
+            {{ $data->peminjam_nama}}
         </option>
         @endforeach
         </select>

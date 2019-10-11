@@ -62,10 +62,10 @@ class PeminjamanController extends Controller
      */
     public function show($id)
     {
+        $peminjaman = Peminjaman::findOrFail($id);
         $petugas = Petugas::all();
         $peminjam = Peminjam::all();
-        $peminjaman = Peminjaman::all();
-        return view('adminbackend.peminjaman.create', compact('petugas', 'peminjam', 'peminjaman'));
+        return view('adminbackend.peminjaman.show', compact('peminjaman', 'petugas', 'peminjam'));
     }
 
     /**

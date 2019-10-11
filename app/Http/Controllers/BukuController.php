@@ -62,7 +62,10 @@ class BukuController extends Controller
      */
     public function show($id)
     {
-        //
+        $buku = Buku::findOrFail($id);
+        $kategori = Kategori::all();
+        $penerbit = Penerbit::all();
+        return view('adminbackend.buku.show', compact('buku', 'kategori', 'penerbit'));
     }
 
     /**

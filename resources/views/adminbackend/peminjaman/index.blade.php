@@ -11,7 +11,8 @@
                     </a>
                 </center>
                 <div class="card-body">
-                    <table id="bs4-table" class="table table-striped table-bordered" style="width:100%">
+                     <table  id="datatable" class="table table-striped table-bordered" style="width:100%" >
+                    {{-- <table id="bs4-table" class="table table-striped table-bordered" style="width:100%"> --}}
                         <thead>
                             <tr>
                             <th>Id</th>
@@ -26,7 +27,7 @@
                         @php $no = 1; @endphp
                             @foreach ($peminjaman as $data)
                             <tr>
-                            <td>{{ $no++ }}</td>
+                                 <td>{{ $no++ }}</td>
                                 <td>{{ $data->petugas->petugas_nama}}</td>
                                 <td>{{ $data->peminjams->peminjam_nama}}</td>
                                 <td>{{ $data->pjm_tgl}}</td>
@@ -49,8 +50,6 @@
                             @endforeach
                         </tbody>
                     </table>
-
-
                 </div>
             </div>
         </div>

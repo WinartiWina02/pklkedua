@@ -1,21 +1,4 @@
 @extends('layouts.admin')
-@section('css')
-<link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
-@endsection
-
-@section('js')
-    <script src="{{ asset('js/select2.min.js')}}"></script>
-    <script src="{{ asset('backend/assets/js/components/select2-init.js')}}"></script>
-    <script src="{{ asset('backend/assets/vendor/ckeditor/ckeditor.js')}}"></script>
-<script>
-    CKEDITOR.replace('editorl');
-
-    $(document).ready(function () {
-        $('#select2').select2();
-    })
-</script>
-@endsection
-
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

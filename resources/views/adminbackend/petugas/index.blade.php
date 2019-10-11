@@ -12,13 +12,11 @@
                         </a>
                 </center>
                 <div class="card-body">
-                    <table id="bs4-table" class="table table-striped table-bordered" style="width:100%">
+                    <table id="datatable" class="table table-striped table-bordered" style="width:100%">
                         <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>Nama Petugas </th>
-
-
                                 <th style="text-align: center;">Aksi</th>
                             </tr>
                         </thead>
@@ -46,8 +44,6 @@
                             @endforeach
                         </tbody>
                     </table>
-
-
                 </div>
             </div>
         </div>

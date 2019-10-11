@@ -15,8 +15,8 @@ class CreateDetailsTable extends Migration
     {
         Schema::create('details', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedbigInteger('peminjamen_id');
-            $table->foreign('peminjamen_id')->references('id')->on('peminjamen')->onDelete('cascade');
+            $table->unsignedbigInteger('peminjams_id');
+            $table->foreign('peminjams_id')->references('id')->on('peminjams')->onDelete('cascade');
             $table->unsignedbigInteger('id_buku');
             $table->foreign('id_buku')->references('id')->on('bukus')->onDelete('cascade');
             $table->date('detail_tgl_kembali');

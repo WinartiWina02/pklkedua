@@ -31,6 +31,7 @@
     <link href="{{ asset('assets/template/vendor/select2/select2.min.css')}}" rel="stylesheet" media="all">
     <link href="{{ asset('assets/template/vendor/perfect-scrollbar/perfect-scrollbar.css')}}" rel="stylesheet" media="all">
     <link href="{{ asset('assets/template/vendor/vector-map/jqvmap.min.css')}}" rel="stylesheet" media="all">
+   <link rel="stylesheet" type="text/css" href="{{asset('asset/DataTables/datatables.min.css')}}"/>
 
     <!-- Main CSS-->
     <link href="{{  asset('assets/template/css/theme.css')}}" rel="stylesheet" media="all">
@@ -121,7 +122,8 @@
                                 @endguest
 
                                 @guest
-                                @else
+                                       @else
+                                       @role('member')
                                  <li>
                                      <a href="{{ url ('/peminjam')}}">
                                         <i class="fas fa-tachometer-alt"></i>Peminjam</a>
@@ -139,6 +141,7 @@
                                         <i class="fas fa-tachometer-alt"></i>Detail Buku</a>
                                 </li>
                                 @endguest
+                                @endrole
                             </ul>
                         </li>
 
@@ -530,9 +533,16 @@
     <script src="{{  asset('assets/template/vendor/vector-map/jquery.vmap.min.js')}}"></script>
     <script src="{{  asset('assets/template/vendor/vector-map/jquery.vmap.sampledata.js')}}"></script>
     <script src="{{  asset('assets/template/vendor/vector-map/jquery.vmap.world.js')}}"></script>
+    <script type="text/javascript" src="{{asset('assets/DataTables/datatables.min.js')}}"></script>
+    <script>
+    $(document).ready(function() {
+    $('#datatable').DataTable();
+});
+</script>
 
     <!-- Main JS-->
     <script src="{{  asset('assets/template/js/main.js')}}"></script>
+
 
 </body>
 

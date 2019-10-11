@@ -13,7 +13,7 @@
                         <table class="table">
                             <tr>
                                 <th>No</th>
-                                <th>Id Peminjam</th>
+                                <th>Nama Peminjam</th>
                                 <th> Nama Buku</th>
                                 <th>Tanggal Kembali</th>
                                 <th>Denda</th>
@@ -24,7 +24,7 @@
                 <tr>
                     {{-- <td>{{ $loop->iteration }}</td> --}}
                     <td>{{ $no++ }}</td>
-                    <td>{{ $data->peminjamen->peminjamans_id}}</td>
+                    <td>{{ $data->peminjams->peminjam_nama}}</td>
                     <td>{{ $data->bukus->buku_judul}}</td>
                      <td>{{ $data->detail_tgl_kembali }}</td>
                     <td>{{ $data->detail_denda }}</td>
