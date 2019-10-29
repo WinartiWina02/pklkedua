@@ -28,10 +28,11 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'role:admin']], func
     Route::resource('buku', 'BukuController');
     Route::resource('detail', 'DetailController');
     Route::resource('petugas', 'PetugasController');
-    Route::get('/petugas/cari', 'PetugasController@cari');
+    // Route::get('/petugas/cari', 'PetugasController@cari');
     Route::resource('peminjaman', 'PeminjamanController');
     Route::resource('kategori', 'KategoriController');
     Route::resource('peminjam', 'PeminjamController');
+    Route::resource('kartu', 'KartuController');
 
     // Route::resource('user', 'UserController');
 });

@@ -45,9 +45,9 @@ class DetailController extends Controller
         $detail = new detail();
         $detail->peminjams_id = $request->peminjam_nama;
         $detail->id_buku = $request->buku_judul;
-        $detail->detail_tgl_kembali = $request->kembali;
-        $detail->detail_denda = $request->detail;
-        $detail->detail_status_kembali = $request->status;
+        $detail->detail_tgl_kembali = $request->detail_tgl_kembali;
+        $detail->detail_denda = $request->detail_denda;
+        $detail->detail_status_kembali = $request->detail_status_kembali;
 
 
         $detail->save();
@@ -63,7 +63,10 @@ class DetailController extends Controller
      */
     public function show($id)
     {
-        //
+        $detail = Detail::findOrFail($id);
+        $buku = Buku::all();
+        $peminjam = Peminjam::all();
+        return view('adminbackend.detail.show', compact('detail', 'buku', 'peminjam'));
     }
 
     /**
@@ -74,7 +77,10 @@ class DetailController extends Controller
      */
     public function edit($id)
     {
-        //
+        $detail = Detail::findOrFail($id);
+        $buku = Buku::all();
+        $peminjam = Peminjam::all();
+        return view('adminbackend.detail.edit', compact('detail', 'buku', 'peminjam'));
     }
 
     /**
@@ -86,7 +92,13 @@ class DetailController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $detail = Detail::findOrFail($id);
+        $detail->peminjams_id = $request->peminjam_nama;
+        $detail->id_buku = $request->buku_judul;
+        $detail->detail_tgl_kembali = $request->detail_tgl_kembali;
+        $detail->detail_status_kembali = $request->kembali;
+        $detail->save();
+        return redirect()->route('detail.index');
     }
 
     /**

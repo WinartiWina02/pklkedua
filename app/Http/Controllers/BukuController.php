@@ -46,7 +46,7 @@ class BukuController extends Controller
         $buku->id_penerbit = $request->pb_nama;
         $buku->buku_judul = $request->buku_jdl;
         $buku->buku_jumhal = $request->jl_hl;
-        $buku->buku_deskripsi = $request->deskripsi;
+        $buku->buku_deskripsi = $request->buku_deskripsi;
         $buku->buku_pengarang = $request->pengarangyah;
         $buku->buku_tahun_terbit = $request->tahun;
 

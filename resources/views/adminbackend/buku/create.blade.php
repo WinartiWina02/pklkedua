@@ -38,7 +38,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="">Deskripsi</label>
-                                <input class="form-control" type="text" name="deskripsi">
+                               <textarea class="ckeditor" id="ck" name="buku_deskripsi" type="text"></textarea>
                             </div>
                             <div class="form-group">
                                 <label for="">Pengarang</label>

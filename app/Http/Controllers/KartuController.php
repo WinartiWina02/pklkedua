@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Kartu;
+use App\Petugas;
+use App\Peminjam;
 
 class KartuController extends Controller
 {
@@ -13,7 +16,8 @@ class KartuController extends Controller
      */
     public function index()
     {
-        //
+        $kartu = Kartu::all();
+        return view('adminbackend.kartu.index', compact('kartu'));
     }
 
     /**
@@ -23,7 +27,10 @@ class KartuController extends Controller
      */
     public function create()
     {
-        //
+        $kartu = Kartu::all();
+        $peminjam = Peminjam::all();
+        $petugas = Petugas::all();
+        return view('adminbackend.kartu.create', compact('kartu', 'peminjam', 'petugas'));
     }
 
     /**
@@ -34,7 +41,15 @@ class KartuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $kartu = new Kartu();
+        $kartu->id_petugas = $request->nama_petugas;
+        $kartu->id_peminjam = $request->peminjam_nama;
+        $kartu->kartu_tgl_pembuatan = $request->kartu_tgl_pembuatan;
+        $kartu->kartu_tgl_akhir = $request->kartu_tgl_akhir;
+        $kartu->kartu_status_aktif = $request->kartu_status_aktif;
+
+        $kartu->save();
+        return redirect()->route('kartu.index')->with('success', 'berhasil ditambah');
     }
 
     /**
@@ -45,7 +60,10 @@ class KartuController extends Controller
      */
     public function show($id)
     {
-        //
+        $kartu = Kartu::findOrFail($id);
+        $peminjam = Peminjam::all();
+        $petugas = Petugas::all();
+        return view('adminbackend.kartu.show', compact('kartu', 'peminjam', 'petugas'));
     }
 
     /**
@@ -56,7 +74,10 @@ class KartuController extends Controller
      */
     public function edit($id)
     {
-        //
+        $kartu = Kartu::findOrFail($id);
+        $peminjam = Peminjam::all();
+        $petugas = Petugas::all();
+        return view('adminbackend.kartu.edit', compact('kartu', 'peminjam', 'petugas'));
     }
 
     /**
@@ -68,7 +89,15 @@ class KartuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $kartu = Kartu::findOrFail($id);
+        $kartu->id_petugas = $request->nama_petugas;
+        $kartu->id_peminjam = $request->peminjam_nama;
+        $kartu->kartu_tgl_pembuatan = $request->kartu_tgl_pembuatan;
+        $kartu->kartu_tgl_akhir = $request->kartu_tgl_akhir;
+        $kartu->kartu_status_aktif = $request->kartu_status_aktif;
+
+        $kartu->save();
+        return redirect()->route('kartu.index')->with('success', 'berhasil ditambah');
     }
 
     /**
@@ -79,6 +108,7 @@ class KartuController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $kartu = Kartu::findOrfail($id)->delete();
+        return redirect()->route('kartu.index');
     }
 }

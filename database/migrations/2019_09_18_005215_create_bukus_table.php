@@ -21,7 +21,7 @@ class CreateBukusTable extends Migration
             $table->foreign('id_penerbit')->references('id')->on('penerbits')->onDelete('cascade');
             $table->string('buku_judul');
             $table->string('buku_jumhal');
-            $table->string('buku_deskripsi');
+            $table->text('buku_deskripsi');
             $table->string('buku_pengarang');
             $table->date('buku_tahun_terbit');
             $table->timestamps();
